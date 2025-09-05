@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,10 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
 
+    [SerializeField] Sprite[] playerSprites;
     [SerializeField] Image chargeUI;
     [SerializeField] GameObject visual;
 
     Animator animator;
+    SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     Vector3 playerPos = Vector3.zero;
 
@@ -17,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxCharge = 1f;
     [SerializeField] float chargePow = 0;
     [SerializeField] float drag = 1f;          // 減速の速さ（大きいほどすぐ止まる）
+    float time = 0f;
 
     float charge = 0f;
 
@@ -24,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = visual.GetComponent<Animator>();
+        spriteRenderer = visual.GetComponent<SpriteRenderer>();
         rb.linearDamping = drag;
     }
 
@@ -34,14 +39,19 @@ public class PlayerController : MonoBehaviour
             Charge();
             ChargeDash();
         }
-
         ClampPlayerPos();
+
+        if (transform.position.magnitude <= 5.0f)
+        {
+            spriteRenderer.sprite = playerSprites[0];
+        }
     }
 
     void Charge()
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            spriteRenderer.sprite = playerSprites[1];
             animator.SetBool("Charging", true);
             charge += Time.deltaTime;
             charge = Mathf.Clamp(charge, minCharge, maxCharge);
@@ -54,7 +64,9 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            spriteRenderer.sprite = playerSprites[2];
             animator.SetBool("Charging", false);
+
             Vector2 dir = Vector2.zero;
 
             var x = Input.GetAxis("Horizontal");
