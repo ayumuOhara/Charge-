@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1771869658085575007}
   - component: {fileID: 8601018153955418199}
-  - component: {fileID: 8258352204755403182}
   - component: {fileID: 5362944904523112632}
+  - component: {fileID: 8624681968114082862}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.94637, y: 0.46343, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,8 +89,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8258352204755403182
-BoxCollider2D:
+--- !u!114 &5362944904523112632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208744908431580802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f89089aa52850a42a85b3f981b32f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemSprites:
+  - {fileID: -2772651986569125835, guid: 1c454a197b13d98469ad469d85080a5b, type: 3}
+  - {fileID: -752260086379260221, guid: 6b0e911de3beb774aa9532f7f6a30269, type: 3}
+  - {fileID: -1483665779731714255, guid: 2b3f2bcc57011744f926c5829536fd6a, type: 3}
+--- !u!58 &8624681968114082862
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,26 +141,4 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.41, y: 2.41}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &5362944904523112632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208744908431580802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f89089aa52850a42a85b3f981b32f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 1.205

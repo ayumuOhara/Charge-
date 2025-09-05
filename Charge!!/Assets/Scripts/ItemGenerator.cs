@@ -22,8 +22,8 @@ public class ItemGenerator : MonoBehaviour
     float[] generateTime = { 1.5f, 1.0f, 0.5f, 0.3f };
 
     float[] normalPer = { 50.0f, 45.0f, 40.0f, 15.0f };
-    float[] rarePer = { 35.0f, 40.0f, 50.0f, 70.0f };
-    float[] bombPer = { 15.0f, 15.0f, 10.0f, 15.0f };
+    float[] rarePer = { 35.0f, 40.0f, 50.0f, 80.0f };
+    float[] bombPer = { 15.0f, 15.0f, 10.0f, 5.0f };
 
     int level = 0;
 

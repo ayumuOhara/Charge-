@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    ItemGenerator.ITEM_TYPE itemType;
+    public ItemGenerator.ITEM_TYPE itemType;
+    [SerializeField] Sprite[] itemSprites;
 
     GameManager gameManager;
     SpriteRenderer spriteRenderer;
@@ -15,13 +16,13 @@ public class Item : MonoBehaviour
         switch(type)
         {
             case ItemGenerator.ITEM_TYPE.NOMAL:
-                spriteRenderer.color = Color.white;
+                spriteRenderer.sprite = itemSprites[0];
                 break;
             case ItemGenerator.ITEM_TYPE.RARE:
-                spriteRenderer.color = Color.softYellow;
+                spriteRenderer.sprite = itemSprites[1];
                 break;
             case ItemGenerator.ITEM_TYPE.BOMB:
-                spriteRenderer.color = Color.black;
+                spriteRenderer.sprite = itemSprites[2];
                 break;
         }
     }
@@ -36,16 +37,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            switch(itemType)
-            {
-                case ItemGenerator.ITEM_TYPE.NOMAL:
-                    gameManager.AddItemCnt(10); break;
-                case ItemGenerator.ITEM_TYPE.RARE:
-                    gameManager.AddItemCnt(30); break;
-                case ItemGenerator.ITEM_TYPE.BOMB:
-                    gameManager.RemoveItemCnt(5); break;
-            }
-
+            gameManager.AddItemCnt(itemType);
             Destroy(this.gameObject);
         }
     }
