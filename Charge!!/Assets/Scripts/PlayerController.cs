@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     [SerializeField] Image chargeUI;
+    [SerializeField] GameObject visual;
 
+    Animator animator;
     Rigidbody2D rb;
     Vector3 playerPos = Vector3.zero;
 
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = visual.GetComponent<Animator>();
         rb.linearDamping = drag;
     }
 
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            animator.SetBool("Charging", true);
             charge += Time.deltaTime;
             charge = Mathf.Clamp(charge, minCharge, maxCharge);
             chargePow = (charge / maxCharge) * 100;
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            animator.SetBool("Charging", false);
             Vector2 dir = Vector2.zero;
 
             var x = Input.GetAxis("Horizontal");
