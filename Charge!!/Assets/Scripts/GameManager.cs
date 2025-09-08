@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image countDownImage;
     [SerializeField] Sprite[] countDownSprites;
 
+    [SerializeField] AudioSource audioSource;
 
     int itemCnt = 0;
 
@@ -36,37 +38,24 @@ public class GameManager : MonoBehaviour
     {
         var countDown = 3.0f;
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         while (true)
         {
-            countDown -= Time.deltaTime;
+            countDownImage.sprite = countDownSprites[2];
+            yield return new WaitForSeconds(0.5f);
+            countDownImage.sprite = countDownSprites[1];
+            yield return new WaitForSeconds(0.5f);
+            countDownImage.sprite = countDownSprites[0];
+            yield return new WaitForSeconds(0.5f);
 
-            if (countDown < 0)
-            {
-                countDownObj.SetActive(false);
-                goSpriteObj.SetActive(true);
-
-                yield return new WaitForSeconds(0.5f);
-                goSpriteObj.SetActive(false);
-                isPlaying = true;
-                break;
-            }
-
-            if (countDown >= 3)
-            {
-                countDownImage.sprite = countDownSprites[2];
-            }
-            else if(countDown >= 2)
-            {
-                countDownImage.sprite = countDownSprites[1];
-            }
-            else
-            {
-                countDownImage.sprite = countDownSprites[0];
-            }
-
-            yield return null;
+            countDownObj.SetActive(false);
+            goSpriteObj.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            goSpriteObj.SetActive(false);
+            isPlaying = true;
+            audioSource.Play();
+            break;
         }
 
         while (true)
@@ -75,6 +64,7 @@ public class GameManager : MonoBehaviour
             
             if (playTime <= 0)
             {
+                StartCoroutine(FadeVolume());
                 isPlaying = false;
                 playTime = 0;
                 yield break;
@@ -103,5 +93,19 @@ public class GameManager : MonoBehaviour
     public void RemoveItemCnt(int remove)
     {
         itemCnt -= remove;
+    }
+
+    IEnumerator FadeVolume()
+    {
+        while (true)
+        {
+            audioSource.volume -= Time.deltaTime * 0.2f;
+            if (audioSource.volume < 0)
+            {
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 }

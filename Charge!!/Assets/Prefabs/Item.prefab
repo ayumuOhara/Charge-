@@ -106,6 +106,10 @@ MonoBehaviour:
   - {fileID: -2772651986569125835, guid: 1c454a197b13d98469ad469d85080a5b, type: 3}
   - {fileID: -752260086379260221, guid: 6b0e911de3beb774aa9532f7f6a30269, type: 3}
   - {fileID: -1483665779731714255, guid: 2b3f2bcc57011744f926c5829536fd6a, type: 3}
+  SE:
+  - {fileID: 8300000, guid: 3ec5fe4a3eee04241847bdf608addfaf, type: 3}
+  - {fileID: 8300000, guid: b0cea07d6a4503b41808d95ea2b23c25, type: 3}
+  - {fileID: 8300000, guid: 704bc431a0774a043924f1b6b9ecdade, type: 3}
 --- !u!58 &8624681968114082862
 CircleCollider2D:
   m_ObjectHideFlags: 0

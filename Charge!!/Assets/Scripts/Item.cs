@@ -8,6 +8,9 @@ public class Item : MonoBehaviour
     GameManager gameManager;
     SpriteRenderer spriteRenderer;
 
+    AudioClip getSE;
+    [SerializeField] AudioClip[] SE;
+
     public void Initialize(ItemGenerator.ITEM_TYPE type)
     {
         itemType = type;
@@ -17,12 +20,15 @@ public class Item : MonoBehaviour
         {
             case ItemGenerator.ITEM_TYPE.NOMAL:
                 spriteRenderer.sprite = itemSprites[0];
+                getSE = SE[0];
                 break;
             case ItemGenerator.ITEM_TYPE.RARE:
                 spriteRenderer.sprite = itemSprites[1];
+                getSE = SE[1];
                 break;
             case ItemGenerator.ITEM_TYPE.BOMB:
                 spriteRenderer.sprite = itemSprites[2];
+                getSE = SE[2];
                 break;
         }
     }
@@ -37,6 +43,8 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            AudioSource a = collision.gameObject.GetComponent<AudioSource>();
+            a.PlayOneShot(getSE);
             gameManager.AddItemCnt(itemType);
             Destroy(this.gameObject);
         }
