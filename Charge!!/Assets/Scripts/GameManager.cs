@@ -6,6 +6,8 @@ using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] PlayerController playerController;
+
     [SerializeField] TextMeshProUGUI itemCntText;
     [SerializeField] TextMeshProUGUI playTimeText;
 
@@ -16,8 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite[] countDownSprites;
 
     [SerializeField] AudioSource audioSource;
-
-    int itemCnt = 0;
 
     public float playTime = 60.0f;
 
@@ -30,14 +30,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        itemCntText.text = $"{itemCnt} pt";
+        itemCntText.text = $"{playerController.GetItemCnt()} pt";
         playTimeText.text = playTime.ToString("F1");
     }
 
     IEnumerator GameStart()
     {
-        var countDown = 3.0f;
-
         yield return new WaitForSeconds(0.5f);
 
         while (true)
@@ -72,27 +70,6 @@ public class GameManager : MonoBehaviour
             
             yield return null;
         }
-    }
-
-    public void AddItemCnt(ItemGenerator.ITEM_TYPE item)
-    {
-        switch (item)
-        {
-            case ItemGenerator.ITEM_TYPE.NOMAL:
-                itemCnt += 10;
-                break;
-            case ItemGenerator.ITEM_TYPE.RARE:
-                itemCnt += 30;
-                break;
-            case ItemGenerator.ITEM_TYPE.BOMB:
-                itemCnt -= 5;
-                break;
-        }
-    }
-
-    public void RemoveItemCnt(int remove)
-    {
-        itemCnt -= remove;
     }
 
     IEnumerator FadeVolume()

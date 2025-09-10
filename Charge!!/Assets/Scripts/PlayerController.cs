@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     float charge = 0f;
 
+    int itemCnt = 0;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -92,5 +94,26 @@ public class PlayerController : MonoBehaviour
         playerPos.x = Mathf.Clamp(playerPos.x, -8.3f, 8.3f);
         playerPos.y = Mathf.Clamp(playerPos.y, -4.4f, 4.4f);
         transform.position = playerPos;
+    }
+
+    public void GetItem(ItemGenerator.ITEM_TYPE item)
+    {
+        switch (item)
+        {
+            case ItemGenerator.ITEM_TYPE.NOMAL:
+                itemCnt += 10;
+                break;
+            case ItemGenerator.ITEM_TYPE.RARE:
+                itemCnt += 30;
+                break;
+            case ItemGenerator.ITEM_TYPE.BOMB:
+                itemCnt -= 5;
+                break;
+        }
+    }
+
+    public int GetItemCnt()
+    {
+        return itemCnt;
     }
 }

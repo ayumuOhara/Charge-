@@ -5,7 +5,6 @@ public class Item : MonoBehaviour
     public ItemGenerator.ITEM_TYPE itemType;
     [SerializeField] Sprite[] itemSprites;
 
-    GameManager gameManager;
     SpriteRenderer spriteRenderer;
 
     AudioClip getSE;
@@ -16,7 +15,7 @@ public class Item : MonoBehaviour
         itemType = type;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        switch(type)
+        switch (type)
         {
             case ItemGenerator.ITEM_TYPE.NOMAL:
                 spriteRenderer.sprite = itemSprites[0];
@@ -33,19 +32,14 @@ public class Item : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             AudioSource a = collision.gameObject.GetComponent<AudioSource>();
             a.PlayOneShot(getSE);
-            gameManager.AddItemCnt(itemType);
+            PlayerController p = collision.gameObject.GetComponent<PlayerController>();
+            p.GetItem(itemType);
             Destroy(this.gameObject);
         }
     }

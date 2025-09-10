@@ -110,6 +110,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3ec5fe4a3eee04241847bdf608addfaf, type: 3}
   - {fileID: 8300000, guid: b0cea07d6a4503b41808d95ea2b23c25, type: 3}
   - {fileID: 8300000, guid: 704bc431a0774a043924f1b6b9ecdade, type: 3}
+  ptCounterObj: {fileID: 486996628034328257, guid: f2735609841b31c4d8efebba0e6b1ccd, type: 3}
+  PtSprites:
+  - {fileID: -1154702325419674055, guid: 48a224671ff89c84db1c6d139a014513, type: 3}
+  - {fileID: -5099292496197868168, guid: a1fcc69ad11595b44846030b03e8e25f, type: 3}
+  - {fileID: -8038976213705442086, guid: 184b0ae033d2e444fb2dffd88bfa9238, type: 3}
 --- !u!58 &8624681968114082862
 CircleCollider2D:
   m_ObjectHideFlags: 0
